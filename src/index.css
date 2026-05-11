@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  /* Cores da marca */
+  --color-brand-50: #eff6ff;
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
+
+  /* Superficies (tema escuro) */
+  --color-surface-900: #0f172a;
+  --color-surface-800: #1e293b;
+  --color-surface-700: #334155;
+  --color-surface-600: #475569;
+
+  /* Feedback */
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+
+  /* Tipografia */
+  --font-sans: "Inter", sans-serif;
+
+  /* Border-radius */
+  --radius-x1: 1rem;
+  --radius-2x1: 1.5rem;
+}
+
+@keyframes badge-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+@keyframes slide-in {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-badge-pulse {
+  animation: badge-pulse 0.3s ease-out 1;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out 1;
+}
