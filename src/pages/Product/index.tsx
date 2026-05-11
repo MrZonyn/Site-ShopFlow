@@ -44,6 +44,8 @@ export function ProductPage() {
   const isOutOfStock = product.stock === 0;
 
   function handleAddToCart() {
+    if (!product) return;
+
     for (let i = 0; i < quantity; i++) addItem(product);
     setAddedFeedback(true);
     setTimeout(() => setAddedFeedback(false), 2000);
