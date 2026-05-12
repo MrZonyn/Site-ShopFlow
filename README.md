@@ -1,73 +1,129 @@
-# React + TypeScript + Vite
+# ShopFlow — E-commerce Fullstack
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Plataforma de e-commerce completa com React, TypeScript, Node.js e MongoDB.
 
-Currently, two official plugins are available:
+![ShopFlow Preview](https://shopflow-front-six.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Links
 
-## React Compiler
+- **Frontend:** https://shopflow-front-six.vercel.app
+- **Backend:** https://shopflow-api-0s9n.onrender.com
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Tecnologias
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Frontend
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- React 19 + TypeScript 6
+- Vite 8
+- Tailwind CSS v4
+- React Router v7
+- Axios
+- Framer Motion
+- Context API (Cart + Auth + Toast)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Backend
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js + Express
+- TypeScript
+- MongoDB + Mongoose
+- JWT (autenticação)
+- bcryptjs (hash de senha)
+
+---
+
+## Funcionalidades
+
+- [x] Listagem de produtos com busca e filtros
+- [x] Filtro por categoria, preço e ordenação
+- [x] Página de produto com galeria de imagens
+- [x] Carrinho com persistência no localStorage
+- [x] Autenticação completa (login/cadastro com JWT)
+- [x] Checkout com autopreenchimento de CEP via ViaCEP
+- [x] Painel administrativo (CRUD de produtos)
+- [x] Rotas protegidas por autenticação e role
+- [x] Skeleton loading e transições de página
+- [x] Design responsivo mobile-first
+- [x] Toast notifications
+- [x] Deploy completo (Vercel + Render)
+
+---
+
+## Estrutura do Projeto
+
+```
+src/
+├── assets/
+├── components/
+│   ├── ui/          # Button, Badge, Spinner, Skeleton, Toast
+│   ├── Header.tsx
+│   ├── Footer.tsx
+│   ├── ProductCard.tsx
+│   ├── HeroBanner.tsx
+│   ├── CategoryGrid.tsx
+│   ├── PageTransition.tsx
+│   ├── PrivateRoute.tsx
+│   └── AdminRoute.tsx
+├── context/         # CartContext, AuthContext, ToastContext
+├── hooks/           # useProducts, useProduct, useCategories, useCepLookup
+├── pages/           # Home, Products, Product, Cart, Checkout, Login, Register, Admin
+├── services/        # api.ts, productService.ts, adminService.ts
+├── types/           # index.ts
+└── utils/           # formatters.ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ⚙️ Quer testar?
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Pré-requisitos
+
+- Node.js 18+
+- Conta no MongoDB Atlas
+
+### Frontend
+
+```bash
+git clone https://github.com/mrzonyn/shopflow.git
+cd shopflow
+npm install
+cp .env.example .env    # configure VITE_API_URL
+npm run dev
 ```
+
+### Backend
+
+```bash
+git clone https://github.com/mrzonyn/shopflow-api.git
+cd shopflow-api
+npm install
+cp .env.example .env    # configure MONGODB_URI e JWT_SECRET
+npm run dev
+```
+
+### Variáveis de ambiente
+
+**Frontend (`.env`)**
+
+```env
+VITE_API_URL=http://localhost:3333/api
+```
+
+**Backend (`.env`)**
+
+```env
+PORT=3333
+MONGODB_URI=sua_connection_string
+JWT_SECRET=sua_chave_secreta
+NODE_ENV=development
+```
+
+---
+
+## 🧑‍💻 Autor
+
+Feito com 💙 por Guilherme P Cardozo
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/gui-cardozo)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/MrZonyn)

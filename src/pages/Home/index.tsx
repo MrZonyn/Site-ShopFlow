@@ -3,17 +3,12 @@ import { CategoryGrid } from "@/components/CategoryGrid";
 import { useNavigate } from "react-router-dom";
 import { HeroBanner } from "@/components/HeroBanner";
 import { Button } from "@/components/ui/Button";
-import { useProducts } from "@/hooks/useProducts";
 import { ProductCardSkeleton } from "@/components/ui/Skeleton";
+import { useHomeProducts } from "@/hooks/useHomeProducts";
 
 export function HomePage() {
-  const loading = useProducts();
+  const { featured, topRated, loading } = useHomeProducts();
   const navigate = useNavigate();
-  const { products } = useProducts();
-  const featured = products.filter((p) => p.featured);
-  const topRated = [...products]
-    .sort((a, b) => b.rating - a.rating)
-    .slice(0, 4);
 
   return (
     <div className="min-h-screen">
