@@ -2,8 +2,6 @@
 
 > Plataforma de e-commerce completa com React, TypeScript, Node.js e MongoDB.
 
-![ShopFlow Preview](https://shopflow-front-six.vercel.app/)
-
 ## Links
 
 - **Frontend:** https://shopflow-front-six.vercel.app
