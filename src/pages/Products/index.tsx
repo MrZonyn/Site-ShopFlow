@@ -2,8 +2,8 @@ import { useProducts } from "@/hooks/useProducts";
 import { ProductCard } from "@/components/ProductCard";
 import { useCategories } from "@/hooks/useCategories";
 import { useSearchParams } from "react-router-dom";
-import { Spinner } from "@/components/ui/Spinner";
 import { useMemo } from "react";
+import { ProductCardSkeleton } from "@/components/ui/Skeleton";
 
 const sortOptions = [
   { value: "relevance", label: "Relevância" },
@@ -33,14 +33,22 @@ export function ProductsPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       {/* Cabeçalho */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-extrabold text-white">Produtos</h1>
-        <p className="text-gray-400 mt-1">
-          {products.length}{" "}
-          {products.length === 1
-            ? "produto encontrado"
-            : "produtos encontrados"}
-        </p>
+      <div className="mb-8 flex flex-col gap-1">
+        <div className="flex items-center gap-2 text-sm text-gray-500">
+          <span>Home</span>
+          <span>/</span>
+          <span className="text-gray-300">Produtos</span>
+        </div>
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-extrabold text-white">Produtos</h1>
+            <p className="text-gray-400 mt-1 text-sm">
+              {loading
+                ? "Carregando..."
+                : `${products.length} ${products.length === 1 ? "produto encontrado" : "produtos encontrados"}`}
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Barra de busca */}
@@ -81,7 +89,7 @@ export function ProductsPage() {
       {/* Filtros */}
       <div className="flex flex-wrap gap-3 mb-8">
         {/* Categorias */}
-        <div className="flex gap-2 flex-wrap">
+        <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
           <button
             onClick={() => updateFilter("category", "")}
             className={[
@@ -139,8 +147,10 @@ export function ProductsPage() {
       )}
 
       {loading ? (
-        <div className="flex justify-center py-24">
-          <Spinner />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <ProductCardSkeleton key={i} />
+          ))}
         </div>
       ) : error ? (
         <div className="text-center py-24 text-red-400">{error}</div>
