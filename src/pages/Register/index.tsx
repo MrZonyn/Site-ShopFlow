@@ -39,8 +39,14 @@ export function RegisterPage() {
       await register(form.name, form.email, form.password);
       addToast("Conta criada com sucesso!", "success");
       navigate("/");
-    } catch {
-      addToast("Falha no registro. Tente novamente.", "error");
+    } catch (error: any) {
+      if (error.code === "ECONNABORTED") {
+        addToast("Servidor demorando para responder, Tente novamente", "error");
+      } else if (error.response?.data?.message) {
+        addToast(error.response.data.message, "error");
+      } else {
+        addToast("Error ao criar conta, Tente novamente.", "error");
+      }
     } finally {
       setLoading(false);
     }

@@ -23,8 +23,14 @@ export function LoginPage() {
       await login(form.email, form.password);
       addToast("Login bem-sucedido!", "success");
       navigate("/");
-    } catch {
-      addToast("Falha no login. Verifique suas credenciais.", "error");
+    } catch (error: any) {
+      if (error.code === "ENCONNABORTED") {
+        addToast("Servidor demorando para responder, Tente novamente", "error");
+      } else if (error.response?.data?.message) {
+        addToast(error.response.data.message, "error");
+      } else {
+        addToast("Error ao criar conta, Tente novamente.", "error");
+      }
     } finally {
       setLoading(false);
     }
