@@ -45,7 +45,7 @@ export function RegisterPage() {
       } else if (error.response?.data?.message) {
         addToast(error.response.data.message, "error");
       } else {
-        addToast("Error ao criar conta, Tente novamente.", "error");
+        addToast("Error ao criar conta, tente novamente.", "error");
       }
     } finally {
       setLoading(false);

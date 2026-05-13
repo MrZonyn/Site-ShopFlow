@@ -69,9 +69,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       email,
       password,
     });
-    setToken(data.data.token);
-    setUser(data.data.user);
-    localStorage.setItem("token", data.data.token);
+    setToken(data.token);
+    setUser(data.user);
+    localStorage.setItem("token", data.token);
   }
 
   function logout() {
